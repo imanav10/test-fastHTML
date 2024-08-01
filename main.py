@@ -302,7 +302,16 @@ async def get():
 serve()
 """, rows='45'
     ))
-    return Div(Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text3,text2,text4,text5 ,heading3,text6,text7,heading4,text8,text9,hx_get="/change")
+
+    texto1 = Titled(Card("Output"))
+    img2 = Container(Img(src='./images/react.png'))
+    img3 = Container(Img(src='./images/GO.png'))
+    img4 = Container(Img(src='./images/fasthtml.png'))
+
+
+    texto2 = Titled(Card("Conclusion"))
+    
+    return Div(Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text3,text2,text4,text5 ,heading3,text6,text7,heading4,text8,text9,texto1,img2,gap,img3,gap,img4,texto2,hx_get="/change")
 
 
 serve()
