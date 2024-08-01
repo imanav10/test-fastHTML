@@ -1,54 +1,68 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+// App.js
+import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
-  const [renderTime, setRenderTime] = useState(null);
+  const [performanceData, setPerformanceData] = useState(null);
 
   useEffect(() => {
-    const start = performance.now();
+    const fetchData = async () => {
+      const response = await fetch('/api/performance');
+      const data = await response.json();
+      setPerformanceData(data);
+    };
 
-    // Simulate some work
-    for (let i = 0; i < 1000000; i++) {
-      Math.random();
-    }
+    fetchData();
+    const interval = setInterval(fetchData, 5000); // Update every 5 seconds
 
-    const end = performance.now();
-    const time = end - start;
-    setRenderTime(time);
-
-    // Log performance metrics to console
-    console.log(`Render time: ${time.toFixed(2)} ms`);
-
-    // Use Performance API to get more detailed metrics
-    if (performance.getEntriesByType) {
-      const perfEntries = performance.getEntriesByType('navigation');
-      if (perfEntries.length > 0) {
-        console.log('Navigation Timing:', perfEntries[0].toJSON());
-      } else {
-        console.log('Navigation timing data not available');
-      }
-    } else {
-      console.log('Performance API not fully supported in this browser');
-    }
-
-    // Log React-specific performance metrics
-    if (window.performance && performance.mark) {
-      performance.mark('react-app-rendered');
-      performance.measure('react-app-render-to-now', 'navigationStart', 'react-app-rendered');
-      const measure = performance.getEntriesByName('react-app-render-to-now')[0];
-      console.log(`Time since navigation start: ${measure.duration.toFixed(2)} ms`);
-    }
-
+    return () => clearInterval(interval);
   }, []);
 
+  if (!performanceData) return <div>Loading...</div>;
+
   return (
-    <div>
-      <h1>React Performance Test</h1>
-      {renderTime && <p>Render time: {renderTime.toFixed(2)} ms</p>}
+    <div className="App">
+      <h1>React Performance Metrics</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Server Start Time</td>
+            <td>{new Date(performanceData.serverStartTime).toLocaleString()}</td>
+          </tr>
+          <tr>
+            <td>Page Render Start Time</td>
+            <td>{new Date(performanceData.renderStartTime).toLocaleString()}</td>
+          </tr>
+          <tr>
+            <td>Page Render End Time</td>
+            <td>{new Date(performanceData.renderEndTime).toLocaleString()}</td>
+          </tr>
+          <tr>
+            <td>Page Render Duration</td>
+            <td>{performanceData.renderDuration} ms</td>
+          </tr>
+          <tr>
+            <td>CPU Usage</td>
+            <td>{performanceData.cpuUsage.toFixed(2)}%</td>
+          </tr>
+          <tr>
+            <td>Memory Usage</td>
+            <td>{performanceData.memoryUsage} / {performanceData.totalMemory} MB</td>
+          </tr>
+          <tr>
+            <td>Request Count</td>
+            <td>{performanceData.requestCount}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 }
-
-ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App
