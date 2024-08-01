@@ -1,0 +1,9 @@
+
+  Python Performance Metrics
+
+{'render_start_time': ['2024-08-01 18:50:25'], 'render_end_time':
+['2024-08-01 18:50:25'], 'render_duration': [110.76498031616211],
+'cpu_usage': [9.9], 'memory_usage': [7889], 'total_memory': [15769],
+'thread_count': [2], 'request_count': [6], 'server_start_time':
+['2024-08-01 18:50:04']}
+

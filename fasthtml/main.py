@@ -24,7 +24,8 @@ async def Gridn():
     
     render_end = time.time()
     render_duration = (render_end - render_start) * 1000
-    diction.setdefault("render_start_time", []).append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(render_start)))
+    
+    Thead(diction.setdefault("render_start_time", []).append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(render_start))))
     diction.setdefault("render_end_time", []).append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(render_end)))
     diction.setdefault("render_duration", []).append(render_duration)
     diction.setdefault("cpu_usage", []).append(cpu_percent)
@@ -39,6 +40,6 @@ async def Gridn():
 @rt('/')
 async def get():
     data = await Gridn()
-    return (H1("Python Performance Metrics"), Grid(data))
+    return (H1("Python Performance Metrics"), P(data))
 
 serve()
