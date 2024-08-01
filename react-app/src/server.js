@@ -20,7 +20,7 @@ app.get('/api/performance', (req, res) => {
   }
 
   const renderEndTime = new Date();
-  const renderDuration = renderEndTime - renderStartTime;
+  const renderDuration = renderEndTime - renderStartTime ;
 
   const cpuUsage = os.loadavg()[0]; // 1 minute load average
   const totalMemory = os.totalmem() / (1024 * 1024); // Convert to MB
