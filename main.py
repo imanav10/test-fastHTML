@@ -1,8 +1,9 @@
 from fasthtml.common import *
-import plotly.graph_objects as go
+
 
 app,rt = fast_app()
 # Loading tailwind and daisyui
+
 chat_headers = [Script(src="https://cdn.tailwindcss.com"),
            Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css")]
 @rt('/')
@@ -332,13 +333,18 @@ serve()
     t4 = Container(P("Python's CPU usage can vary significantly depending on the specific implementation and libraries used. Python's Global Interpreter Lock (GIL) can be a bottleneck for CPU-bound tasks, as it allows only one thread to execute at a time. However, Python's multiprocessing module can help mitigate this by running separate processes. For I/O-bound tasks, Python's asyncio library can be efficient, similar to Node.js's event-driven model."))
 
     texto2 = Titled(Card("Conclusion"))
-    texto3 = Container(P(("Being honest"),A("FastHTML"),(" got great code efficiency, it required less amount of code as compaired to both JS and GO. But its not all about code efficiency, let's compare it based upon their render time, CPU usage as well as memory usage. Also we'll be talking about - inshort how ugly code looks, either in JS, Python or GO.")))
+    texto3 = Container(P(("Being honest"),A("FastHTML"),(" got great code efficiency, it required less amount of code as compaired to both JS and GO. But its not all about code efficiency, based on render time, CPU usage as well as memory usage JS and GO perform much better than FastHTML.CPU usage is a crucial consideration when choosing a server-side language. Go generally offers the best performance for both I/O-bound and CPU-bound tasks due to its efficient concurrency model. Node.js is highly efficient for I/O-bound tasks but can struggle with CPU-bound operations. Python is versatile and easy to use, with good performance for I/O-bound tasks, but may require additional tuning for CPU-bound tasks due to the GIL.")))
+    t5 = Container(P("Inshort choosing the right server-side language depends on the specific needs of your project. If performance and concurrency are your top priorities, Go might be the best choice. For real-time applications and a vast ecosystem, Node.js is a strong contender. If rapid development and a rich set of libraries are your main focus, Python could be the way to go."))
+
 
     l1 = Container(Ul(Li("Go: 0.33ms"),Li("React: 10ms"),Li("Python: 110ms")))
     l2 = Container(Ul(Li("Go Routine Count: 3"),Li("Python Thread Count: 2")))
     l3 = Container(Ul(Li("Go: 51.1%"),Li("React: 65.5%"),Li("Python: 52.77%")))
-    
-    return Div(Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text10,text3,text2,text4,text5 ,heading3,text11 ,text6,text7,heading4,text8,text9,texto4,texto5,texto6,l1,texto7,texto8,l2,texto9,texto10,l3,txt5,txt2,txt1,gap,txt3,txt4,gap,txt6,txt7,txt8,txt9,t1,t2,t3,t4,texto2,texto3,hx_get="/change")
+    l4 = Container(Ul(Li("Go: 3.44%"),Li("React: 0.49%"),Li("Python: 8.4%")))
+    footer = Container(P(("Connect"),(A("x.com" ,href='https://x.com/chikoshit')),(A("github.com",href='https://github.com/imanav10'))))
+    resources = Container(P("Resources: https://github.com/fasthtml, https://docs.fastht.ml/api/xtend.html,https://docs.fastht.ml/, https://go.dev/doc/,https://docs.python.org/3/"))
+
+    return Div(Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text10,text3,text2,text4,text5 ,heading3,text11 ,text6,text7,heading4,text8,text9,texto4,texto5,texto6,l1,texto7,texto8,l2,texto9,texto10,l3,txt5,txt2,txt1,gap,txt3,txt4,gap,txt6,txt7,txt8,txt9,t1,t2,t3,t4,l4,texto2,texto3,t5,gap,resources,footer,hx_get="/change")
 
 
 serve()
