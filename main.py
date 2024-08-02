@@ -3,7 +3,7 @@ from fasthtml.common import *
 
 app,rt = fast_app()
 # Loading tailwind and daisyui
-
+ded = Title("Fast??")
 chat_headers = [Script(src="https://cdn.tailwindcss.com"),
            Link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/daisyui@4.11.1/dist/full.min.css")]
 @rt('/')
@@ -344,7 +344,7 @@ serve()
     footer = Container(P(("Connect"),(A("x.com" ,href='https://x.com/chikoshit')),(A("github.com",href='https://github.com/imanav10'))))
     resources = Container(P("Resources: https://github.com/fasthtml, https://docs.fastht.ml/api/xtend.html,https://docs.fastht.ml/, https://go.dev/doc/,https://docs.python.org/3/, https://github.com/imanav10/test-fastHTML"))
 
-    return Div(Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text10,text3,text2,text4,text5 ,heading3,text11 ,text6,text7,heading4,text8,text9,texto4,texto5,texto6,l1,texto7,texto8,l2,texto9,texto10,l3,txt5,txt2,txt1,gap,txt3,txt4,gap,txt6,txt7,txt8,txt9,t1,t2,t3,t4,l4,texto2,texto3,t5,gap,resources,footer,hx_get="/change")
+    return Div(ded,Titled(" "),Div(cls="chat-header"),title,img,gap,heading, text1,heading2,text10,text3,text2,text4,text5 ,heading3,text11 ,text6,text7,heading4,text8,text9,texto4,texto5,texto6,l1,texto7,texto8,l2,texto9,texto10,l3,txt5,txt2,txt1,gap,txt3,txt4,gap,txt6,txt7,txt8,txt9,t1,t2,t3,t4,l4,texto2,texto3,t5,gap,resources,footer)
 
 
 serve()
